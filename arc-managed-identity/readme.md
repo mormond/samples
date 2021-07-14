@@ -23,7 +23,13 @@
     1. It should be possible to use ENV variables IMDS_ENDPOINT and IDENTITY_ENDPOINT but I found they weren't populated during my testing
     1. Code running on the server can use the endpoint to request an auth token to access Azure resources
     1. In order to acquire a token, the client making the request must provide a secret (challenge token) to prove they are authorised
+    1. To be able to access the secret, the client must be a member of the `himds` group
     1. SSH to the "on-prem" VM
+    1. Add the current user to the `himds` (eg for the default username of `azureuser`)
+        ```
+        sudo usermod -a -G himds azureuser
+        ```
+    1. Logout and back in again for the change to take effect
     1. Run the following commands 
         ```
         ChallengeTokenPath=$(curl -s -D - -H Metadata:true "http://127.0.0.1:40342/metadata/identity/oauth2/token?api-version=2019-11-01&resource=https%3A%2F%2Fmanagement.azure.com" | grep Www-Authenticate | cut -d "=" -f 2 | tr -d "[:cntrl:]")
@@ -34,11 +40,6 @@
         ```
         ChallengeToken=$(cat $ChallengeTokenPath)
         echo $ChallengeToken
-        ```
-    1. You need root permissions so if this doesn't work, try
-        ```
-        ChallengeToken=$(sudo cat $ChallengeTokenPath)
-        echo $ChallengeToken    
         ```
     1. You should have a token. We can use this token to authorise a request for an OAuth token for Key Vault
         ```
