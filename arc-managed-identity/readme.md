@@ -60,3 +60,13 @@
             "id":"https://mykv.vault.azure.net/secrets/Secret1/25332ae471a14492bdd87f5f64ea758a","attributes":{"enabled":true,"created":1626261766,"updated":1626261766,"recoveryLevel":"Recoverable+Purgeable"}
         }
         ```
+
+## References
+
+* [Evaluate Arc enabled servers on an Azure virtual machine
+](https://docs.microsoft.com/en-us/azure/azure-arc/servers/plan-evaluate-on-azure-virtual-machine)
+* [Using a managed identity with Arc enabled servers](https://docs.microsoft.com/en-us/azure/azure-arc/servers/security-overview#using-a-managed-identity-with-arc-enabled-servers)
+* [Authenticate against Azure resources with Arc enabled servers
+](https://docs.microsoft.com/en-us/azure/azure-arc/servers/managed-identity-authentication)
+* [Tutorial: Use a Linux VM system-assigned managed identity to access Azure Key Vault
+](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-nonaad)
